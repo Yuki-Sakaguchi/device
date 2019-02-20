@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Audio API.</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      .vol {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      .vol__bar {
+        height: 24px;
+        background-color: green 
+      }
+      .vol__num {
+        position: absolute;
+        display: block;
+        margin: 0 10px;
+        color: #80cc8e;
+      }
+      .btn {
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        margin: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vol">
+      <p class="vol__num" id="vol">0</p>
+      <div class="vol__bar" id="vol-effect"></div>
+    </div>
+
+    <div class="btn" onclick="play()">START</div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="js/vendor/createjs.min.js"></script>
+    <script src="js/vendor/leonardo.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
