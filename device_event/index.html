@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>傾きで玉が転がります</title>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+        <style>
+            body {
+                font-family: 'Noto Sans JP', sans-serif;
+            }
+            #result {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .text {
+                margin: auto;
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="result"></div>
+        <canvas id="canvas"></canvas>
+        <div class="text">振ったら玉が生まれます</div>
+
+        <script src="./js/vendor/createjs.min.js"></script>
+        <script src="./js/vendor/leonardo.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>

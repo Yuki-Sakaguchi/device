@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Web Audio API.</title>
+    <title>息を吹きかけたら玉が浮く</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
     <style>
       * {
         box-sizing: border-box;
@@ -12,6 +13,9 @@
       html,
       body {
         margin: 0;
+      }
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
       }
       .vol {
         position: absolute;
@@ -46,6 +50,21 @@
         left: 0;
         margin: auto;
       }
+      .text {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+      }
+      .hide {
+          display: none;
+      }
     </style>
   </head>
   <body>
@@ -55,6 +74,7 @@
     </div>
 
     <div class="btn" onclick="play()">START</div>
+    <div class="text hide">息を吹きかけてください</div>
 
     <canvas id="canvas"></canvas>
 
