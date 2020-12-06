@@ -6,10 +6,13 @@
 (function () {
     const requestDeviceMotionPermission = async () => {
         // ジャイロセンサーが使えるかどうか
+        console.log('check!', window.DeviceOrientationEvent)
         if (window.DeviceOrientationEvent) {
             // ios13以上
+            console.log('ios13以上', DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function')
             if (DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function') {
                 const permission = await DeviceMotionEvent.requestPermission()
+                console.log('permission', permission)
                 if (permission === 'granted') {
                      window.addEventListener('deviceorientation', deviceorientation)
                      window.addEventListener('devicemotion', devicemotion)
