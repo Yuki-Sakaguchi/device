@@ -9,11 +9,13 @@ const requestDeviceMotionPermission = async () => {
             const permission = await DeviceMotionEvent.requestPermission()
             if (permission === 'granted') {
                  window.addEventListener('deviceorientation', deviceorientation)
+                 window.addEventListener('devicemotion', devicemotion)
             } else {
                 window.alert('許可されていません')
             }
         } else { // ios13未満
             window.addEventListener('deviceorientation', deviceorientation)
+            window.addEventListener('devicemotion', devicemotion)
         }
     } else {
         window.alert('対応していません')
@@ -21,6 +23,7 @@ const requestDeviceMotionPermission = async () => {
 }
 
 let alpha = 0, beta = 0, gamma = 0
+let acceleration = { x: 0, y: 0, z: 0 }
 
 const deviceorientation = (dat) => {
     // iphoneとandroidで向きが逆なので-1を掛けて任意に修正
@@ -28,6 +31,8 @@ const deviceorientation = (dat) => {
     beta = dat.beta * -1
     gamma = dat.gamma * -1
 }
+
+const devicemotion = (e) => acceleration = e.acceleration
 
 const handlePress = async () => {
     try {
@@ -39,7 +44,13 @@ const handlePress = async () => {
 
     const txt = document.getElementById('txt')
     const timer = window.setInterval(() => {
-        txt.innerHTML = `alpha: ${alpha}<br>beta: ${beta}<br>gamma: ${gamma}`
+        txt.innerHTML = `alpha: ${alpha}<br>
+                         beta: ${beta}<br>
+                         gamma: ${gamma}<br>
+                         acceleration.x: ${acceleration.x}<br>
+                         acceleration.y: ${acceleration.y}<br>
+                         acceleration.z: ${acceleration.z}
+                        `
     })
 }
 
