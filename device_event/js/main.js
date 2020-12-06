@@ -67,20 +67,20 @@
     /**
      * 傾きを取得
      */
-    window.addEventListener('deviceorientation', e => {
+    const deviceorientation = (e) => {
         position.alpha = e.alpha
         position.beta = e.beta
         position.gamma = e.gamma
-    })
+    }
 
     /**
      * 加速度を取得
      */
-    window.addEventListener('devicemotion', e => {
+    const devicemotion = (e) => {
         motion.x = e.acceleration.x
         motion.y = e.acceleration.y
         motion.z = e.acceleration.z
-    })
+    }
 
     // --------------------------------------------------
     
