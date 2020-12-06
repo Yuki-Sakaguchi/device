@@ -4,12 +4,35 @@
  */
 
 (function () {
-    if (!DeviceOrientationEvent in window) {
-        // 入っていなければ使えない
-        console.warn('傾きセンサーが入っていません')
-        return
-    } else {
-        console.log('さあ傾くぞー')
+    const requestDeviceMotionPermission = async () => {
+        // ジャイロセンサーが使えるかどうか
+        if (window.DeviceOrientationEvent) {
+            // ios13以上
+            if (DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                const permission = await DeviceMotionEvent.requestPermission()
+                if (permission === 'granted') {
+                     window.addEventListener('deviceorientation', deviceorientation)
+                     window.addEventListener('devicemotion', devicemotion)
+                } else {
+                    window.alert('許可されていません')
+                }
+            } else { // ios13未満
+                window.addEventListener('deviceorientation', deviceorientation)
+                window.addEventListener('devicemotion', devicemotion)
+            }
+        } else {
+            window.alert('対応していません')
+        }
+    }
+
+    const handlePress = async () => {
+        try {
+            await requestDeviceMotionPermission()
+            button.setAttribute('style', 'display: none;')
+        } catch (e) {
+            console.error(e)
+            window.alert('対応していません')
+        }
     }
     
     // --------------------------------------------------
@@ -17,6 +40,7 @@
     const elResult = document.querySelector('#result')
 
     const position = {
+        alpha: 0,
         beta: 0,
         gamma: 0,
     }
@@ -31,13 +55,20 @@
      * 画面に描写
      */
     function resultRender () {
-        elResult.innerHTML = `上下: ${position.beta}<br>左右: ${position.gamma}`
+        elResult.innerHTML = `alpha: ${position.alpha}<br>
+                              beta: ${position.beta}<br>
+                              gamma: ${position.gamma}<br>
+                              acceleration.x: ${motion.x}<br>
+                              acceleration.y: ${motion.y}<br>
+                              acceleration.z: ${motion.z}
+                            `
     }
 
     /**
      * 傾きを取得
      */
     window.addEventListener('deviceorientation', e => {
+        position.alpha = e.alpha
         position.beta = e.beta
         position.gamma = e.gamma
     })
@@ -117,4 +148,8 @@
     }
 
     game.play()
+
+    // クリックされたらスタート
+    const button = document.querySelector('#button')
+    button.addEventListener('click', handlePress)
 })()
