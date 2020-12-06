@@ -37,8 +37,9 @@ const handlePress = async () => {
         window.alert('対応していません')
     }
 
+    const txt = document.getElementById('txt')
     const timer = window.setInterval(() => {
-        document.getElementById('txt').innerHTML = `alpha: ${alpha}<br>beta: ${beta}<br>gamma: ${gamma}`
+        txt.innerHTML = `alpha: ${alpha}<br>beta: ${beta}<br>gamma: ${gamma}`
     })
 }
 
