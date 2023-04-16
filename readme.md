@@ -11,6 +11,7 @@
 
 * スマホを振ると玉が生成されます（加速度センサー）
 * スマホの傾きに合わせて玉が転がります（傾きセンサー）
+* [アニメーションの参考](https://jsfiddle.net/sad5ztmw/2/)
 
 ## [デバイスのマイクに息を吹きかけるとアニメーションするサンプル](https://yuki-sakaguchi.github.io/device/device_mic/) 
 
