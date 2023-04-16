@@ -24,6 +24,7 @@
 
 * これはPCでも動きます
 * マイクに大きな音を加えると玉が浮きます（息を吹きかけるのが効率がよさそう）
+* iOS の safari だとちゃんと動いてないかも...
 
 ## [デバイスを横向きだけで動かすサンプル](https://yuki-sakaguchi.github.io/device/device_direction/)
 <details>
