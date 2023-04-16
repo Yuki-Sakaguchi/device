@@ -2,7 +2,6 @@
  * ブラウザから音声を取得して音量を取得する
  */
 function play() {
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
   const context = new AudioContext();
 
   //AnalyserNodeオブジェクト(音声解析用クラス)のインスタンス化
@@ -31,7 +30,7 @@ function play() {
         window.hackForMozzila = stream;
         //音声の入力点(createMediaStreamSource)にマイク入力(stream)を設定し,
         //出力点であるAnayserNodeオブジェクト(analyser)と接続(connect)させる。
-        context.createMediaStreamSource(stream).connect(context.destination);
+        context.createMediaStreamSource(stream).connect(analyser);
       })
       //マイクにアクセスできなかったorユーザーがマイクの利用を許可しなかった場合はエラーを表示
       .catch(function (err) {
@@ -45,6 +44,7 @@ function play() {
   function update() {
     //マイクに入力されている音声の音量を取得、表示
     volume = Math.floor(getFrequency());
+    console.log("update", volume);
     elVol.innerHTML = volume;
     elEffect.style.width = volume + "%";
     requestAnimationFrame(update);
@@ -58,6 +58,7 @@ function play() {
     analyser.getByteFrequencyData(frequencies);
     return (
       frequencies.reduce(function (previous, current) {
+        console.log(previous, current, analyser.frequencyBinCount);
         return previous + current;
       }) / analyser.frequencyBinCount
     );
